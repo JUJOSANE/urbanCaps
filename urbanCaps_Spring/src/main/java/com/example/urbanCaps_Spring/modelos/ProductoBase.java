@@ -1,10 +1,12 @@
 package com.example.urbanCaps_Spring.modelos;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "productoBase")
@@ -18,20 +20,21 @@ public class ProductoBase {
     private String marca;
     @Column(name = "stock", nullable = false)
     private Integer stock;
-    @Column(name = "precio", precision = 10, scale = 2,nullable = false)
-    private BigDecimal precio;
+    @Column(name = "precio",nullable = false)
+    private Double precio;
 
     //RELACION CON DETALLEVENTA (1)
     @OneToMany(mappedBy = "productoBase")
-    @JsonManagedReference(value = "relacionproductodetalle")
-    private ArrayList<DetalleVenta> detalleVentas;
+    @JsonIgnore
+    //@JsonManagedReference(value = "relacionproductodetalle")
+    private List<DetalleVenta> detalleVentas = new ArrayList<>();
 
     public ProductoBase() {
     }
 
     public ProductoBase(Integer id, String nombreProdu,
-                        String marca, Integer stock, BigDecimal precio,
-                        ArrayList<DetalleVenta> detalleVentas) {
+                        String marca, Integer stock, Double precio,
+                        List<DetalleVenta> detalleVentas) {
         this.id = id;
         this.nombreProdu = nombreProdu;
         this.marca = marca;
@@ -48,8 +51,8 @@ public class ProductoBase {
     public void setMarca(String marca) {this.marca = marca;}
     public Integer getStock() {return stock;}
     public void setStock(Integer stock) {this.stock = stock;}
-    public BigDecimal getPrecio() {return precio;}
-    public void setPrecio(BigDecimal precio) {this.precio = precio;}
-    public ArrayList<DetalleVenta> getDetalleVentas() {return detalleVentas;}
-    public void setDetalleVentas(ArrayList<DetalleVenta> detalleVentas) {this.detalleVentas = detalleVentas;}
+    public Double getPrecio() {return precio;}
+    public void setPrecio(Double precio) {this.precio = precio;}
+    public List<DetalleVenta> getDetalleVentas() {return detalleVentas;}
+    public void setDetalleVentas(List<DetalleVenta> detalleVentas) {this.detalleVentas = detalleVentas;}
 }

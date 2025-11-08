@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "cliente")
@@ -36,14 +37,14 @@ public class Cliente {
         //RELACION CON VENTA(1)
         @OneToMany(mappedBy = "cliente")
         @JsonManagedReference(value = "relacionclienteventa")
-        private ArrayList<Venta> ventas;
+        private List<Venta> ventas = new ArrayList<>();
 
         public Cliente() {
         }
 
         public Cliente(Integer id, String nombre, String apellido,
                        Integer telefono, String correo, Integer cedula,
-                       String direccion, Ciudad ciudad, ArrayList<Venta> ventas) {
+                       String direccion, Ciudad ciudad, List<Venta> ventas) {
                 this.id = id;
                 this.nombre = nombre;
                 this.apellido = apellido;
@@ -70,6 +71,6 @@ public class Cliente {
         public void setDireccion(String direccion) {this.direccion = direccion;}
         public Ciudad getCiudad() {return ciudad;}
         public void setCiudad(Ciudad ciudad) {this.ciudad = ciudad;}
-        public ArrayList<Venta> getVentas() {return ventas;}
-        public void setVentas(ArrayList<Venta> ventas) {this.ventas = ventas;}
+        public List<Venta> getVentas() {return ventas;}
+        public void setVentas(List<Venta> ventas) {this.ventas = ventas;}
 }

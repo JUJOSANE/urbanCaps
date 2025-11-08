@@ -7,6 +7,7 @@ import com.example.urbanCaps_Spring.repositorios.ICiudadRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
@@ -55,5 +56,11 @@ public class CiudadServicio {
         }catch (Exception error) {
             throw new Exception("Hubo un error buscando la ciudad: " + error.getMessage());
         }
+    }
+
+    //Buscar Todos
+    public List<CiudadDTO> findAll(){
+        List<Ciudad> ciudades = this.respositorio.findAll();
+        return this.mapa.convertirListaADto(ciudades);
     }
 }
