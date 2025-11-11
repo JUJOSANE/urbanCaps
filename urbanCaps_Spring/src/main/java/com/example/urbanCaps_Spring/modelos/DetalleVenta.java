@@ -23,7 +23,7 @@ public class DetalleVenta {
     private Venta venta;
 
     //RELACION CON DETALLEVENTA(M)
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "fk_productoBase", referencedColumnName = "id")
     @JsonBackReference(value = "relacionproductodetalle")
     private ProductoBase productoBase;

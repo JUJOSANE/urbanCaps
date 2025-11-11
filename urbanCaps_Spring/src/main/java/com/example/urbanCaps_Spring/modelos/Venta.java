@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "venta")
@@ -33,11 +33,11 @@ public class Venta {
     //RELCION CON DETALLEVENTA(1)
     @OneToMany(mappedBy = "venta")
     @JsonManagedReference(value = "relacionventadetalleventa")
-    private ArrayList<DetalleVenta> detalleVentas;
+    private List<DetalleVenta> detalleVentas;
 
     public Venta() {}
 
-    public Venta(Integer id, LocalDate fecha, Integer totalVenta, Cliente cliente, Vendedor vendedor,ArrayList<DetalleVenta> detalleVentas) {
+    public Venta(Integer id, LocalDate fecha, Integer totalVenta, Cliente cliente, Vendedor vendedor,List<DetalleVenta> detalleVentas) {
         this.id = id;
         this.fecha = fecha;
         this.totalVenta = totalVenta;
@@ -56,4 +56,6 @@ public class Venta {
     public void setCliente(Cliente cliente) {this.cliente = cliente;}
     public Vendedor getVendedor() {return vendedor;}
     public void setVendedor(Vendedor vendedor) {this.vendedor = vendedor;}
+    public List<DetalleVenta> getDetalleVentas() {return detalleVentas;}
+    public void setDetalleVentas(List<DetalleVenta> detalleVentas) {this.detalleVentas = detalleVentas;}
 }

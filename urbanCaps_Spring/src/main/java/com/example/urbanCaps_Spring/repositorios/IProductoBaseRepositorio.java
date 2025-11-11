@@ -12,6 +12,6 @@ import java.util.Optional;
 public interface IProductoBaseRepositorio extends JpaRepository<ProductoBase, Integer> {
     //IMPLEMENTACION DE METODOS COMPLEJOS
 
-    Optional<ProductoBase> findByNombreProdu(String nombreProdu);
-    Optional<ProductoBase> findByMarca(String marca);
+    List<ProductoBase> findByNombreProdu(String nombreProdu);
+    List<ProductoBase> findByMarca(String marca);
 }

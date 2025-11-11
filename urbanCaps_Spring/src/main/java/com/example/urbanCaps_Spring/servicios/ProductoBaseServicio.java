@@ -81,14 +81,14 @@ public class ProductoBaseServicio {
     }
 
     //Buscar por nombre
-    public ProductoBaseDTO buscarPorNombre(String nombreProdu)throws Exception{
+    public List<ProductoBaseDTO> buscarPorNombre(String nombreProdu)throws Exception{
         try {
 
-            Optional<ProductoBase> productoAEncontrar = this.repositorio.findByNombreProdu(nombreProdu);
-            if (productoAEncontrar.isEmpty()){
-                throw new NoSuchElementException("No se encontro el Producto con el nombre: " + nombreProdu);
+            List<ProductoBase> listaAEncontrar = this.repositorio.findByNombreProdu(nombreProdu);
+            if (listaAEncontrar.isEmpty()){
+                throw new NoSuchElementException("No se encontraron Productos con el nombre: " + nombreProdu);
             }
-            return this.mapa.convertirModeloADTO(productoAEncontrar.get());
+            return this.mapa.convertirListaADTO(listaAEncontrar);
 
         }catch (NoSuchElementException e){
             throw e;
@@ -98,14 +98,14 @@ public class ProductoBaseServicio {
     }
 
     //Buscar por marca
-    public ProductoBaseDTO buscarPorMarca(String marca)throws Exception{
+    public List<ProductoBaseDTO> buscarPorMarca(String marca)throws Exception{
         try {
 
-            Optional<ProductoBase> marcaAEncontrar = this.repositorio.findByMarca(marca);
+            List<ProductoBase> marcaAEncontrar = this.repositorio.findByMarca(marca);
             if (marcaAEncontrar.isEmpty()){
                 throw new NoSuchElementException("No se encontro la marca con el nombre: " + marca);
             }
-            return this.mapa.convertirModeloADTO(marcaAEncontrar.get());
+            return this.mapa.convertirListaADTO(marcaAEncontrar);
 
         }catch (NoSuchElementException e){
             throw e;

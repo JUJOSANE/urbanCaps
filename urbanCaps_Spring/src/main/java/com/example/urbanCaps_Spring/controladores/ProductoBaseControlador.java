@@ -95,12 +95,12 @@ public class ProductoBaseControlador {
 
     //Bscar por nombre
     @GetMapping("/nombre/{nombreProdu}")
-    public ResponseEntity<ProductoBaseDTO> buscarPorNombre(@PathVariable String nombreProdu){
+    public ResponseEntity<List<ProductoBaseDTO>> buscarPorNombre(@PathVariable String nombreProdu){
         try {
-            ProductoBaseDTO productoNombre = this.servicio.buscarPorNombre(nombreProdu);
+           List<ProductoBaseDTO> productosNombre = this.servicio.buscarPorNombre(nombreProdu);
             return ResponseEntity
                     .status(HttpStatus.OK)
-                    .body(productoNombre);
+                    .body(productosNombre);
 
         }catch (NoSuchElementException e){
             return ResponseEntity
@@ -115,12 +115,12 @@ public class ProductoBaseControlador {
 
     //Buscar por Marca
     @GetMapping("/marca/{marca}")
-    public ResponseEntity<ProductoBaseDTO> buscarPorMarca(@PathVariable String marca){
+    public ResponseEntity<List<ProductoBaseDTO>> buscarPorMarca(@PathVariable String marca){
         try {
-            ProductoBaseDTO productoMarca = this.servicio.buscarPorMarca(marca);
+            List<ProductoBaseDTO> productosMarca = this.servicio.buscarPorMarca(marca);
             return ResponseEntity
                     .status(HttpStatus.OK)
-                    .body(productoMarca);
+                    .body(productosMarca);
 
         }catch (NoSuchElementException e){
             return ResponseEntity
